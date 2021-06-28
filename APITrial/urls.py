@@ -19,6 +19,8 @@ from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from APitry import views
 from APitry import router
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     #REST FRAMEWORKK URLS
@@ -26,6 +28,5 @@ urlpatterns = [
     path('APitry/', views.MusicList),
     path('APitry/<int:pk>', views.MusicDetails),
     path('APitry/account/',include('account.urls'),name='account_url' ),
-
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns=format_suffix_patterns(urlpatterns)
